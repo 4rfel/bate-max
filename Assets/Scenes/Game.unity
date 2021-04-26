@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c005b32a68a254cbe502a4e5cb8eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NickName: arfel;
+  m_NickName: arfel
   m_RoomName: All
   m_MaxPlayers: 20
   m_ChannelIdCodesStartRange: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
     - Game
     AllowRuntimeSceneChanges: 0
     NetworkPrefabs:
-    - Prefab: {fileID: 8268526132533242188, guid: a19aa2617eab19246b7ad7d5bf3efa7e,
+    - Prefab: {fileID: 2699541615817244657, guid: 5d353d131e213f94fb9639806519a1fa,
         type: 3}
       PlayerPrefab: 1
     PlayerPrefabHash:
@@ -217,7 +217,7 @@ MonoBehaviour:
     00000000:
       type: {class: NullableBoolSerializable, ns: MLAPI.Configuration, asm: Unity.Multiplayer.MLAPI.Runtime}
       data:
-        Value: 1897319656204293034
+        Value: 0
 --- !u!4 &651736485
 Transform:
   m_ObjectHideFlags: 0
@@ -251,7 +251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &704576208
 BoxCollider:
   m_ObjectHideFlags: 0
