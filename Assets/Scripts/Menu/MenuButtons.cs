@@ -18,4 +18,15 @@ public class MenuButtons : NetworkBehaviour {
 		buttons.SetActive(false);
 		loading.SetActive(true);
 	}
+
+	InputMaster controls;
+
+	private void Awake() {
+		controls = new InputMaster();
+		controls.Player.Accelerate.performed += ctx => Accelerate(ctx.ReadValue<float>());
+	}
+
+	void Accelerate(float acc) {
+		Debug.Log("input " + acc);
+	}
 }

@@ -9,16 +9,16 @@
                     "name": "Accelerate",
                     "type": "Value",
                     "id": "7f987a4e-3fa2-490e-8a97-a6d0f359a3ac",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "",
                     "processors": "Clamp(max=1)",
-                    "interactions": "Hold(duration=0.1,pressPoint=0.1)"
+                    "interactions": ""
                 },
                 {
                     "name": "Break",
                     "type": "Value",
-                    "id": "edcc0b89-157e-4037-83f6-998d7d4049dd",
-                    "expectedControlType": "Axis",
-                    "processors": "",
+                    "id": "22e53ca6-c694-43d8-a8bb-a33bc71898f8",
+                    "expectedControlType": "",
+                    "processors": "Clamp(max=1)",
                     "interactions": ""
                 },
                 {
@@ -31,50 +31,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "a586424e-5e99-4c24-adf2-aeb48909817b",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Teclado",
-                    "action": "Accelerate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "469186e7-9831-46d1-8f2c-65832288006d",
-                    "path": "<XInputController>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ControllerXBOX",
-                    "action": "Accelerate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c309d9f4-6aa6-488a-afe4-9bdd07086e4b",
-                    "path": "<XInputController>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ControllerXBOX",
-                    "action": "Break",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "10221f53-1b41-4af3-8a22-3772d1b13c74",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Teclado",
-                    "action": "Break",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "6ae495f9-d5f6-473e-b816-5d46f672f5d8",
@@ -96,6 +52,72 @@
                     "action": "ChangeCam",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "ff5de195-b055-42cb-a33a-cccb3df5c082",
+                    "path": "1DAxis(minValue=-100,maxValue=100)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Accelerate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "ec1269e9-6541-49e4-96a3-1fa617fb81b7",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Teclado",
+                    "action": "Accelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "ed66f130-a758-4457-ae26-b6e0ee7027a0",
+                    "path": "<XInputController>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerXBOX",
+                    "action": "Accelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "2ac16326-299b-4db1-8945-cc2be9209091",
+                    "path": "1DAxis(minValue=-100,maxValue=100)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Break",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "f834924e-10fd-4d64-9ecf-0f0b53b66cea",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Teclado",
+                    "action": "Break",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "242c241f-3444-466d-b779-2d1707342932",
+                    "path": "<XInputController>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerXBOX",
+                    "action": "Break",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

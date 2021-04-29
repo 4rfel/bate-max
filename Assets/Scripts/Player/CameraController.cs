@@ -38,4 +38,6 @@ public class CameraController : NetworkBehaviour {
 			thirdPerson.SetActive(!isFirstPerson);
 		}
 	}
+
+
 }
