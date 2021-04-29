@@ -9,7 +9,7 @@
                     "name": "Accelerate",
                     "type": "Value",
                     "id": "7f987a4e-3fa2-490e-8a97-a6d0f359a3ac",
-                    "expectedControlType": "Analog",
+                    "expectedControlType": "Axis",
                     "processors": "Clamp(max=1),AxisDeadzone",
                     "interactions": ""
                 },
@@ -44,22 +44,22 @@
                 },
                 {
                     "name": "",
-                    "id": "c309d9f4-6aa6-488a-afe4-9bdd07086e4b",
-                    "path": "<XInputController>/leftTrigger",
+                    "id": "469186e7-9831-46d1-8f2c-65832288006d",
+                    "path": "<XInputController>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "ControllerXBOX",
-                    "action": "Break",
+                    "action": "Accelerate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "4c3f6d58-2733-4aa4-a0d7-b470f2d98b99",
-                    "path": "<DualShockGamepad>/leftTrigger",
+                    "id": "c309d9f4-6aa6-488a-afe4-9bdd07086e4b",
+                    "path": "<XInputController>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "ControllerPS4",
+                    "groups": "ControllerXBOX",
                     "action": "Break",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -93,17 +93,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "ControllerXBOX",
-                    "action": "ChangeCam",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1e495d33-115e-4c16-9e1e-43f29e7d6826",
-                    "path": "<DualShockGamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ControllerPS4",
                     "action": "ChangeCam",
                     "isComposite": false,
                     "isPartOfComposite": false

@@ -31,17 +31,19 @@ public class PlayerMovement : NetworkBehaviour {
 	}
 
 	void Accelerate(float acc) {
-		Debug.Log(acc);
-		if (IsLocalPlayer) {
-			rb.AddForce(Vector3.forward * acc * 100);
-			rb.velocity = Vector3.ClampMagnitude(rb.velocity, max);
-		}
+		Debug.Log("acc" + acc);
+		//if (IsLocalPlayer) {
+		//	rb.AddForce(Vector3.forward * acc * 100);
+		//	rb.velocity = Vector3.ClampMagnitude(rb.velocity, max);
+		//}
 	}
 
 	void Break(float acc) {
-		if (IsLocalPlayer) {
-			rb.AddForce(-Vector3.forward * acc * 100);
-			rb.velocity = Vector3.ClampMagnitude(rb.velocity, -max/4);
-		}
+		Debug.Log("break" + acc);
+
+		//if (IsLocalPlayer) {
+		//	rb.AddForce(-Vector3.forward * acc * 100);
+		//	rb.velocity = Vector3.ClampMagnitude(rb.velocity, -max/4);
+		//}
 	}
 }
