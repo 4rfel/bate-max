@@ -5,7 +5,7 @@ using MLAPI;
 public class PlayerMovement : NetworkBehaviour {
 
 	InputMaster controls;
-	Rigidbody rb;
+	[SerializeField] Rigidbody rb;
 
 	public float max = 10;
 
@@ -16,11 +16,11 @@ public class PlayerMovement : NetworkBehaviour {
 
 	}
 
-	private void Start() {
-		if (IsLocalPlayer) {
-			rb = GetComponent<Rigidbody>();
-		}
-	}
+	//private void Start() {
+	//	if (IsLocalPlayer) {
+	//		rb = GetComponent<Rigidbody>();
+	//	}
+	//}
 
 	private void OnEnable() {
 		controls.Enable();
@@ -31,19 +31,16 @@ public class PlayerMovement : NetworkBehaviour {
 	}
 
 	void Accelerate(float acc) {
-		Debug.Log("acc" + acc);
-		//if (IsLocalPlayer) {
-		//	rb.AddForce(Vector3.forward * acc * 100);
-		//	rb.velocity = Vector3.ClampMagnitude(rb.velocity, max);
-		//}
+		if (IsLocalPlayer) {
+			rb.AddForce(Vector3.forward * acc * 100);
+			//rb.velocity = Vector3.ClampMagnitude(rb.velocity, max);
+		}
 	}
 
 	void Break(float acc) {
-		Debug.Log("break" + acc);
-
-		//if (IsLocalPlayer) {
-		//	rb.AddForce(-Vector3.forward * acc * 100);
-		//	rb.velocity = Vector3.ClampMagnitude(rb.velocity, -max/4);
-		//}
+		if (IsLocalPlayer) {
+			rb.AddForce(-Vector3.forward * acc * 100);
+			//rb.velocity = Vector3.ClampMagnitude(rb.velocity, -max / 4);
+		}
 	}
 }
