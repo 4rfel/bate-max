@@ -10,8 +10,8 @@
                     "type": "Value",
                     "id": "7f987a4e-3fa2-490e-8a97-a6d0f359a3ac",
                     "expectedControlType": "Axis",
-                    "processors": "Clamp(max=1),AxisDeadzone",
-                    "interactions": ""
+                    "processors": "Clamp(max=1)",
+                    "interactions": "Hold(duration=0.1,pressPoint=0.1)"
                 },
                 {
                     "name": "Break",
