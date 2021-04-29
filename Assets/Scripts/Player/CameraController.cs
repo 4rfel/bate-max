@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using MLAPI;
 
@@ -9,6 +7,22 @@ public class CameraController : NetworkBehaviour {
 
 	bool isFirstPerson = true;
 
+	InputMaster controls;
+
+
+	private void Awake() {
+		controls = new InputMaster();
+		controls.Player.ChangeCam.performed += ctx => ChangeCam();
+	}
+
+	private void OnEnable() {
+		controls.Enable();
+	}
+
+	private void OnDisable() {
+		controls.Disable();
+	}
+
 	void Start() {
 		fistPerson.SetActive(false);
 		thirdPerson.SetActive(false);
@@ -17,17 +31,11 @@ public class CameraController : NetworkBehaviour {
 		}
 	}
 
-	void Update() {
-		if (IsLocalPlayer) {
-			if (Input.GetButtonDown("ChangeCam")) {
-				ChangeCam();
-			}
-		}
-	}
-
 	void ChangeCam() {
-		isFirstPerson = !isFirstPerson;
-		fistPerson.SetActive(isFirstPerson);
-		thirdPerson.SetActive(!isFirstPerson);
+		if (IsLocalPlayer) {
+			isFirstPerson = !isFirstPerson;
+			fistPerson.SetActive(isFirstPerson);
+			thirdPerson.SetActive(!isFirstPerson);
+		}
 	}
 }

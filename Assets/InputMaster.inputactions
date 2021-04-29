@@ -1,0 +1,149 @@
+{
+    "name": "InputMaster",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "e777b942-21d5-4a22-b44a-08dcbbd835a1",
+            "actions": [
+                {
+                    "name": "Accelerate",
+                    "type": "Value",
+                    "id": "7f987a4e-3fa2-490e-8a97-a6d0f359a3ac",
+                    "expectedControlType": "Analog",
+                    "processors": "Clamp(max=1),AxisDeadzone",
+                    "interactions": ""
+                },
+                {
+                    "name": "Break",
+                    "type": "Value",
+                    "id": "edcc0b89-157e-4037-83f6-998d7d4049dd",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ChangeCam",
+                    "type": "Button",
+                    "id": "1015781b-1625-42bb-ba09-ac5af430c8b0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a586424e-5e99-4c24-adf2-aeb48909817b",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Teclado",
+                    "action": "Accelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c309d9f4-6aa6-488a-afe4-9bdd07086e4b",
+                    "path": "<XInputController>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerXBOX",
+                    "action": "Break",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c3f6d58-2733-4aa4-a0d7-b470f2d98b99",
+                    "path": "<DualShockGamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerPS4",
+                    "action": "Break",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10221f53-1b41-4af3-8a22-3772d1b13c74",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Teclado",
+                    "action": "Break",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ae495f9-d5f6-473e-b816-5d46f672f5d8",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Teclado",
+                    "action": "ChangeCam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6226e193-8ef5-485c-8acc-8164dace3436",
+                    "path": "<XInputController>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerXBOX",
+                    "action": "ChangeCam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1e495d33-115e-4c16-9e1e-43f29e7d6826",
+                    "path": "<DualShockGamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerPS4",
+                    "action": "ChangeCam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "ControllerPS4",
+            "bindingGroup": "ControllerPS4",
+            "devices": [
+                {
+                    "devicePath": "<DualShockGamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "ControllerXBOX",
+            "bindingGroup": "ControllerXBOX",
+            "devices": [
+                {
+                    "devicePath": "<XInputController>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Teclado",
+            "bindingGroup": "Teclado",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
