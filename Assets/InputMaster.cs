@@ -41,6 +41,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Turn"",
+                    ""type"": ""Value"",
+                    ""id"": ""7a2b81d0-82f8-4c90-b472-259fca0a57be"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -131,6 +139,39 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Break"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""0ba1a52c-0279-4ac2-87d0-a470bbde1793"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turn"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""43eb2003-d558-42eb-a175-0cf505c039a1"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Teclado"",
+                    ""action"": ""Turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""8d4f6a29-e481-4d79-97cc-87d43bac4070"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Teclado"",
+                    ""action"": ""Turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -176,6 +217,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Accelerate = m_Player.FindAction("Accelerate", throwIfNotFound: true);
         m_Player_Break = m_Player.FindAction("Break", throwIfNotFound: true);
         m_Player_ChangeCam = m_Player.FindAction("ChangeCam", throwIfNotFound: true);
+        m_Player_Turn = m_Player.FindAction("Turn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -228,6 +270,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Accelerate;
     private readonly InputAction m_Player_Break;
     private readonly InputAction m_Player_ChangeCam;
+    private readonly InputAction m_Player_Turn;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -235,6 +278,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Accelerate => m_Wrapper.m_Player_Accelerate;
         public InputAction @Break => m_Wrapper.m_Player_Break;
         public InputAction @ChangeCam => m_Wrapper.m_Player_ChangeCam;
+        public InputAction @Turn => m_Wrapper.m_Player_Turn;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -253,6 +297,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @ChangeCam.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeCam;
                 @ChangeCam.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeCam;
                 @ChangeCam.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeCam;
+                @Turn.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurn;
+                @Turn.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurn;
+                @Turn.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurn;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -266,6 +313,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @ChangeCam.started += instance.OnChangeCam;
                 @ChangeCam.performed += instance.OnChangeCam;
                 @ChangeCam.canceled += instance.OnChangeCam;
+                @Turn.started += instance.OnTurn;
+                @Turn.performed += instance.OnTurn;
+                @Turn.canceled += instance.OnTurn;
             }
         }
     }
@@ -302,5 +352,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnAccelerate(InputAction.CallbackContext context);
         void OnBreak(InputAction.CallbackContext context);
         void OnChangeCam(InputAction.CallbackContext context);
+        void OnTurn(InputAction.CallbackContext context);
     }
 }
