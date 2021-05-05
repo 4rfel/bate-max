@@ -6,12 +6,15 @@ public class PlayerMovement : NetworkBehaviour {
 
 	InputMaster controls;
 	Rigidbody rb;
+	[SerializeField] LayerMask Ground;
 
 	float max_foward = 10f;
 	float max_backward = 4f;
 	float current_acc = 0f;
 
 	bool canMove = true;
+	bool isUpsideDown = false;
+
 
 	Quaternion rot = Quaternion.identity;
 
@@ -59,6 +62,13 @@ public class PlayerMovement : NetworkBehaviour {
 		}
 	}
 
+	private void Update() {
+		if (IsLocalPlayer) {
+			TestCanMove();
+			TestUpsideDown();
+		}
+	}
+
 	private void FixedUpdate() {
 		if (IsLocalPlayer) {
 			//Debug.Log(canMove);
@@ -74,18 +84,18 @@ public class PlayerMovement : NetworkBehaviour {
 		}
 	}
 
-	private void OnCollisionEnter(Collision collision) {
-		if (collision.collider.name == "Arena") {
-			ContactPoint[] contacts;
-			int n = collision.GetContacts(contacts);
+	void TestCanMove() {
+		if (Physics.Raycast(transform.position, -transform.up, 2f, Ground)) {
 			canMove = true;
-		}
-	}
-
-	private void OnCollisionExit(Collision collision) {
-		if (collision.collider.name == "Arena") {
+		} else {
 			canMove = false;
 		}
-
+	}
+	void TestUpsideDown() {
+		if (Physics.Raycast(transform.position, transform.up, 2f, Ground)) {
+			isUpsideDown = true;
+		} else {
+			isUpsideDown = false;
+		}
 	}
 }

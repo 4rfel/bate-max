@@ -213,6 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e33cc63e90fd34fa80fe3e079b667b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ground:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!64 &1283680035274430634
 MeshCollider:
   m_ObjectHideFlags: 0
