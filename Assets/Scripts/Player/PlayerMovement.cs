@@ -11,6 +11,8 @@ public class PlayerMovement : NetworkBehaviour {
 	float max_backward = 4f;
 	float current_acc = 0f;
 
+	bool canMove = true;
+
 	Quaternion rot = Quaternion.identity;
 
 	private void Awake() {
@@ -53,19 +55,37 @@ public class PlayerMovement : NetworkBehaviour {
 
 	void Turn(float turnSpeed) {
 		if (IsLocalPlayer) {
-			rot = Quaternion.Euler(new Vector3(0, turnSpeed*2f, 0f));
+			rot = Quaternion.Euler(new Vector3(0, turnSpeed * 2f, 0f));
 		}
 	}
 
 	private void FixedUpdate() {
 		if (IsLocalPlayer) {
-			rb.velocity = rb.velocity + rb.transform.forward * current_acc;
-			rb.MoveRotation(rb.rotation * rot);
+			//Debug.Log(canMove);
+			if (canMove) {
+				rb.velocity = rb.velocity + rb.transform.forward * current_acc;
+				rb.MoveRotation(rb.rotation * rot);
 
-			if (current_acc > 0f)
-				rb.velocity = Vector3.ClampMagnitude(rb.velocity, max_foward);
-			else
-				rb.velocity = Vector3.ClampMagnitude(rb.velocity, max_backward);
+				if (current_acc > 0f)
+					rb.velocity = Vector3.ClampMagnitude(rb.velocity, max_foward);
+				else
+					rb.velocity = Vector3.ClampMagnitude(rb.velocity, max_backward);
+			}
 		}
+	}
+
+	private void OnCollisionEnter(Collision collision) {
+		if (collision.collider.name == "Arena") {
+			ContactPoint[] contacts;
+			int n = collision.GetContacts(contacts);
+			canMove = true;
+		}
+	}
+
+	private void OnCollisionExit(Collision collision) {
+		if (collision.collider.name == "Arena") {
+			canMove = false;
+		}
+
 	}
 }
