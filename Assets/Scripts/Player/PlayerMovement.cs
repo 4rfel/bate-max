@@ -81,6 +81,10 @@ public class PlayerMovement : NetworkBehaviour {
 				else
 					rb.velocity = Vector3.ClampMagnitude(rb.velocity, max_backward);
 			}
+			if (isUpsideDown) {
+				transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0f);
+				//rb.MoveRotation(rb.rotation * Quaternion.Euler(new Vector3(0f, 0f, 3f)));
+			}
 		}
 	}
 
