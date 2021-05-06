@@ -68,7 +68,7 @@ public class PlayerMovement : NetworkBehaviour {
 			TestUpsideDown();
 		}
 	}
-
+	public float k = 0f;
 	private void FixedUpdate() {
 		if (IsLocalPlayer) {
 			//Debug.Log(canMove);
@@ -83,20 +83,22 @@ public class PlayerMovement : NetworkBehaviour {
 			}
 			if (isUpsideDown) {
 				transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0f);
-				//rb.MoveRotation(rb.rotation * Quaternion.Euler(new Vector3(0f, 0f, 3f)));
+				//rb.MoveRotation(rb.rotation * Quaternion.Euler(new Vector3(0f, 0f, k)));
 			}
 		}
 	}
 
 	void TestCanMove() {
-		if (Physics.Raycast(transform.position, -transform.up, 2f, Ground)) {
+		//Debug.Log(transform.TransformPoint(transform.position)/2);
+		//Debug.DrawLine(transform.TransformPoint(transform.position)/2, transform.TransformPoint(-transform.up)/2 );
+		if (Physics.Raycast(transform.position, -transform.up, 1f, Ground)) {
 			canMove = true;
 		} else {
 			canMove = false;
 		}
 	}
 	void TestUpsideDown() {
-		if (Physics.Raycast(transform.position, transform.up, 2f, Ground)) {
+		if (Physics.Raycast(transform.position, transform.up, 0.7f, Ground)) {
 			isUpsideDown = true;
 		} else {
 			isUpsideDown = false;
