@@ -36,6 +36,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "Nitro",
+                    "type": "Button",
+                    "id": "5ab6a704-f1fd-4dd6-bf0d-c8afb3eea4b3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -181,6 +189,28 @@
                     "action": "Turn",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "082ba2ec-2cef-4b5e-bc51-8ddd4f09154f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Teclado",
+                    "action": "Nitro",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "75523c9b-55cd-4349-bf59-e28cc8b95503",
+                    "path": "<XInputController>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControllerXBOX",
+                    "action": "Nitro",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
