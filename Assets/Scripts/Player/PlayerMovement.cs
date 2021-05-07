@@ -1,5 +1,6 @@
 using UnityEngine;
 using MLAPI;
+using MilkShake;
 
 
 public class PlayerMovement : NetworkBehaviour {
@@ -23,6 +24,12 @@ public class PlayerMovement : NetworkBehaviour {
 	float nitroAcceleration = 10f;
 	float nitroDisacceleration = 0.01f;
 	float maxNitroSpeed = 30f;
+
+	[SerializeField]
+	Shaker shaker;
+
+	[SerializeField]
+	ShakePreset shake_preset;
 
 
 	Quaternion rot = Quaternion.identity;
@@ -100,7 +107,9 @@ public class PlayerMovement : NetworkBehaviour {
 				}
 			}
 		}
+
 	}
+
 	public float k = 0f;
 	private void FixedUpdate() {
 		if (IsLocalPlayer) {
@@ -156,4 +165,15 @@ public class PlayerMovement : NetworkBehaviour {
 			isUpsideDown = false;
 		}
 	}
+
+	private void OnCollisionEnter(Collision other) {
+		if (other.gameObject.name == this.gameObject.name) {
+			Debug.Log("aaaaaaaaaa");
+			Sound.PlaySound("crash");
+			shaker.Shake(shake_preset);
+		}
+	}
+
 }
+
+
