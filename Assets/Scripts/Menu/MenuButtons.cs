@@ -5,28 +5,29 @@ using MLAPI.SceneManagement;
 public class MenuButtons : NetworkBehaviour {
 
 	[SerializeField] GameObject buttons;
-	[SerializeField] GameObject loading;
+	//[SerializeField] GameObject loading;
+	MLAPI.Transports.PhotonRealtime.PhotonRealtimeTransport transport;
 
+
+	private void Start() {
+		transport = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<MLAPI.Transports.PhotonRealtime.PhotonRealtimeTransport>();
+	}
 
 	public void Host() {
+		string str = "";
+		for(int i = 0; i < 6; i++) {
+			str += (char) Random.Range(65, 90);
+		}
+		transport.RoomName = str;
 		NetworkManager.Singleton.StartHost();
 		NetworkSceneManager.SwitchScene("Game");
 	}
 
 	public void Join() {
+		if (transport.RoomName.Length != 6)
+			return;
 		NetworkManager.Singleton.StartClient();
 		buttons.SetActive(false);
-		loading.SetActive(true);
-	}
-
-	InputMaster controls;
-
-	private void Awake() {
-		controls = new InputMaster();
-		controls.Player.Accelerate.performed += ctx => Accelerate(ctx.ReadValue<float>());
-	}
-
-	void Accelerate(float acc) {
-		Debug.Log("input " + acc);
+		//loading.SetActive(true);
 	}
 }
