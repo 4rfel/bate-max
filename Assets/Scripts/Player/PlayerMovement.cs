@@ -32,6 +32,9 @@ public class PlayerMovement : NetworkBehaviour {
 	ShakePreset shake_preset;
 
 
+	PausePlayer pausePlayer;
+
+
 	Quaternion rot = Quaternion.identity;
 
 	private void Awake() {
@@ -51,6 +54,7 @@ public class PlayerMovement : NetworkBehaviour {
 	private void Start() {
 		if (IsLocalPlayer) {
 			rb = GetComponent<Rigidbody>();
+			pausePlayer = GetComponent<PausePlayer>();
 		}
 	}
 
@@ -82,6 +86,8 @@ public class PlayerMovement : NetworkBehaviour {
 
 	void Nitro() {
 		if (IsLocalPlayer) {
+			if (pausePlayer.paused)
+				return;
 			if (nitroCurrentCD <= 0f) {
 				isNitro = true;
 				nitroCurrentCD = nitroCD;
@@ -110,7 +116,6 @@ public class PlayerMovement : NetworkBehaviour {
 
 	}
 
-	public float k = 0f;
 	private void FixedUpdate() {
 		if (IsLocalPlayer) {
 			if (rb.velocity.magnitude > max_foward) {
@@ -143,14 +148,15 @@ public class PlayerMovement : NetworkBehaviour {
 			}
 			if (isUpsideDown) {
 				transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0f);
-				//rb.MoveRotation(rb.rotation * Quaternion.Euler(new Vector3(0f, 0f, k)));
 			}
 		}
 	}
 
 	void TestCanMove() {
-		//Debug.Log(transform.TransformPoint(transform.position)/2);
-		//Debug.DrawLine(transform.TransformPoint(transform.position)/2, transform.TransformPoint(-transform.up)/2 );
+		if (pausePlayer.paused) {
+			canMove = false;
+			return;
+		}
 		if (Physics.Raycast(transform.position, -transform.up, 1f, Ground)) {
 			canMove = true;
 		} else {

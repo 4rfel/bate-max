@@ -57,6 +57,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""be344089-4ac7-4d92-ae32-081aa749daa3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -224,6 +232,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Nitro"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e73cf5a6-c8b9-4b23-9180-e8f8fad94e16"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Teclado"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45eae89e-7a6a-42f9-9ed3-7084e236d83f"",
+                    ""path"": ""<XInputController>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControllerXBOX"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -271,6 +301,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_ChangeCam = m_Player.FindAction("ChangeCam", throwIfNotFound: true);
         m_Player_Turn = m_Player.FindAction("Turn", throwIfNotFound: true);
         m_Player_Nitro = m_Player.FindAction("Nitro", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -325,6 +356,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_ChangeCam;
     private readonly InputAction m_Player_Turn;
     private readonly InputAction m_Player_Nitro;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -334,6 +366,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @ChangeCam => m_Wrapper.m_Player_ChangeCam;
         public InputAction @Turn => m_Wrapper.m_Player_Turn;
         public InputAction @Nitro => m_Wrapper.m_Player_Nitro;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -358,6 +391,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Nitro.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNitro;
                 @Nitro.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNitro;
                 @Nitro.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNitro;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -377,6 +413,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Nitro.started += instance.OnNitro;
                 @Nitro.performed += instance.OnNitro;
                 @Nitro.canceled += instance.OnNitro;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -415,5 +454,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnChangeCam(InputAction.CallbackContext context);
         void OnTurn(InputAction.CallbackContext context);
         void OnNitro(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

@@ -28,6 +28,9 @@ public class MenuButtons : NetworkBehaviour {
 			return;
 		NetworkManager.Singleton.StartClient();
 		buttons.SetActive(false);
-		//loading.SetActive(true);
+	}
+
+	public void Quit() {
+		Application.Quit();
 	}
 }
