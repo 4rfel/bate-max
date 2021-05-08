@@ -4,6 +4,7 @@ using MLAPI;
 public class CameraController : NetworkBehaviour {
 	[SerializeField] GameObject fistPerson;
 	[SerializeField] GameObject thirdPerson;
+	[SerializeField] Camera cam;
 
 	bool isFirstPerson = true;
 
@@ -24,18 +25,22 @@ public class CameraController : NetworkBehaviour {
 	}
 
 	void Start() {
-		fistPerson.SetActive(false);
-		thirdPerson.SetActive(false);
+		cam.gameObject.SetActive(false);
 		if (IsLocalPlayer) {
-			fistPerson.SetActive(isFirstPerson);
+			cam.gameObject.SetActive(true);
+			cam.transform.position = fistPerson.transform.position;
 		}
 	}
 
 	void ChangeCam() {
 		if (IsLocalPlayer) {
 			isFirstPerson = !isFirstPerson;
-			fistPerson.SetActive(isFirstPerson);
-			thirdPerson.SetActive(!isFirstPerson);
+			if (isFirstPerson)
+				cam.transform.position = fistPerson.transform.position;
+			else
+				cam.transform.position = thirdPerson.transform.position;
+			//Debug.Log(cam.transform.position + " " + cam.transform.rotation);
+
 		}
 	}
 
