@@ -8,6 +8,8 @@ public class PlayerMovement : NetworkBehaviour {
 	InputMaster controls;
 	Rigidbody rb;
 	[SerializeField] LayerMask Ground;
+	[SerializeField] GameObject nitroObj;
+	[SerializeField] Material nitroMaterial;
 
 	float max_foward = 10f;
 	float max_backward = 4f;
@@ -53,6 +55,7 @@ public class PlayerMovement : NetworkBehaviour {
 
 	private void Start() {
 		if (IsLocalPlayer) {
+			nitroObj.SetActive(true);
 			rb = GetComponent<Rigidbody>();
 			pausePlayer = GetComponent<PausePlayer>();
 		}
@@ -107,10 +110,12 @@ public class PlayerMovement : NetworkBehaviour {
 					isNitro = false;
 					nitroCurrentDuration = 0f;
 				}
+				nitroMaterial.SetFloat("_Hp", (nitroDuration - nitroCurrentDuration) / nitroDuration);
 			} else {
 				if (nitroCurrentCD > 0f) {
 					nitroCurrentCD -= Time.deltaTime;
 				}
+				nitroMaterial.SetFloat("_Hp", (nitroCD - nitroCurrentCD) / nitroCD);
 			}
 		}
 
