@@ -6,8 +6,9 @@
         SubShader{
             // subshader tags
             Tags {
-                "RenderType" = "Transparent" // tag to inform the render pipeline of what type this is
+                "Queue" = "Overlay" // tag to inform the render pipeline of what type this is
             }
+            ZTest Always
             Pass {
 
 
