@@ -1,15 +1,21 @@
 using UnityEngine;
 using MLAPI;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
 
 public class CameraController : NetworkBehaviour {
 	[SerializeField] GameObject fistPerson;
 	[SerializeField] GameObject thirdPerson;
 	[SerializeField] GameObject cam;
+	[SerializeField] GameObject aa;
+	[SerializeField] Slider sensy;
+
+
 
 	bool isFirstPerson = true;
 
 	InputMaster controls;
-
 
 	private void Awake() {
 		controls = new InputMaster();
@@ -35,10 +41,14 @@ public class CameraController : NetworkBehaviour {
 	void ChangeCam() {
 		if (IsLocalPlayer) {
 			isFirstPerson = !isFirstPerson;
-			if (isFirstPerson)
+			if (isFirstPerson) {
+				cam.transform.rotation = Quaternion.Euler(0f, 0f, 0f) * transform.rotation;
 				cam.transform.position = fistPerson.transform.position;
-			else
+
+			} else {
+				cam.transform.rotation = Quaternion.Euler(0f, 0f, 0f) * transform.rotation;
 				cam.transform.position = thirdPerson.transform.position;
+			}
 		}
 	}
 
@@ -53,10 +63,18 @@ public class CameraController : NetworkBehaviour {
 
 	void MoveCameraTP() {
 
+		Vector2 mp = Mouse.current.position.ReadValue();
+		float cameraRotationX = mp.x * sensy.value;
+
+		aa.transform.rotation = Quaternion.Euler(0f, cameraRotationX, 0f);
+		Debug.Log(cameraRotationX);
+
 	}
 
 	void MoveCameraFP() {
-
+		Vector2 mp = Mouse.current.position.ReadValue();
+		float cameraRotationX = mp.x * sensy.value;
+		cameraRotationX = Mathf.Clamp(cameraRotationX, -90, 90);
+		cam.transform.rotation = Quaternion.Euler(0f, cameraRotationX, 0f) * transform.rotation;
 	}
-
 }
