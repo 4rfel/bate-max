@@ -35,6 +35,11 @@ public class PausePlayer : NetworkBehaviour {
 		if (IsLocalPlayer) {
 			paused = !paused;
 			pauseCanvas.SetActive(paused);
+			Cursor.visible = paused;
+			if (paused)
+				Cursor.lockState = CursorLockMode.None;
+			else
+				Cursor.lockState = CursorLockMode.Confined;
 		}
 	}
 
@@ -48,9 +53,9 @@ public class PausePlayer : NetworkBehaviour {
 
 	[ClientRpc]
 	void StopHostClientRpc() {
+		NetworkManager.Singleton.StopClient();
+		SceneManager.LoadScene("Game");
 		Application.Quit();
-		//NetworkManager.Singleton.StopClient();
-		//SceneManager.LoadScene("Game");
 	}
 
 	public void ToMenu() {
@@ -65,17 +70,5 @@ public class PausePlayer : NetworkBehaviour {
 			StopGame();
 			Application.Quit();
 		}
-	}
-
-
-	private void Update() {
-		if (paused) {
-			Cursor.visible = true;
-			Cursor.lockState = CursorLockMode.None;
-		} else {
-			Cursor.visible = false;
-			Cursor.lockState = CursorLockMode.Confined;
-		}
-
 	}
 }

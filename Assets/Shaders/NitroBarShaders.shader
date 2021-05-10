@@ -48,8 +48,8 @@
 
                     float3 colorHp = tex2D(_MainTex, float2(_Hp, i.uv.y));
 
-                    if (_Hp < 0.3) {
-                        float flash = cos(_Time.y * 4) * 0.4 + 1;
+                    if (_Hp > 0.95) {
+                        float flash = abs(cos(_Time.y * 4) *0.4) + 0.4;
 
                         colorHp *= flash;
                     }
