@@ -39,10 +39,24 @@ public class CameraController : NetworkBehaviour {
 				cam.transform.position = fistPerson.transform.position;
 			else
 				cam.transform.position = thirdPerson.transform.position;
-			//Debug.Log(cam.transform.position + " " + cam.transform.rotation);
-
 		}
 	}
 
+	private void LateUpdate() {
+		if (IsLocalPlayer) {
+			if (isFirstPerson)
+				MoveCameraFP();
+			else
+				MoveCameraTP();
+		}
+	}
+
+	void MoveCameraTP() {
+
+	}
+
+	void MoveCameraFP() {
+
+	}
 
 }
