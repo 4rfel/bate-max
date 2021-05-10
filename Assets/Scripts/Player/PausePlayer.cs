@@ -34,8 +34,6 @@ public class PausePlayer : NetworkBehaviour {
 		if (IsLocalPlayer) {
 			paused = !paused;
 			pauseCanvas.SetActive(paused);
-			Cursor.visible = paused;
-
 		}
 	}
 
@@ -49,7 +47,6 @@ public class PausePlayer : NetworkBehaviour {
 
 	[ClientRpc]
 	void StopHostClientRpc() {
-		Debug.Log("AAA");
 		Application.Quit();
 		//NetworkManager.Singleton.StopClient();
 		//SceneManager.LoadScene("Game");
@@ -67,5 +64,14 @@ public class PausePlayer : NetworkBehaviour {
 			StopGame();
 			Application.Quit();
 		}
+	}
+
+
+	private void Update() {
+		if (paused)
+			Cursor.visible = true;
+		else
+			Cursor.visible = false;
+
 	}
 }
