@@ -13,7 +13,7 @@ public class PlayerMovement : NetworkBehaviour {
 	[SerializeField] Material nitroMaterial;
 	[SerializeField] GameObject cart;
 
-	NetworkVariableColor color;
+	NetworkVariable<Color> color = new NetworkVariable<Color>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, Color.black);
 
 
 	float max_foward = 10f;
@@ -40,7 +40,7 @@ public class PlayerMovement : NetworkBehaviour {
 
 
 	PausePlayer pausePlayer;
-
+	bool flag_inutil = false;
 
 	Quaternion rot = Quaternion.identity;
 
@@ -136,10 +136,13 @@ public class PlayerMovement : NetworkBehaviour {
 			}
 		} else {
 			if (color.Value == Color.black) {
+				flag_inutil = true;
+			}
+			if (flag_inutil && color.Value != Color.black) {
 				Material cartMaterial = cart.GetComponent<Renderer>().material;
-
 				cartMaterial.SetColor("_Color", color.Value);
 				cartMaterial.SetColor("_AmbientLight", color.Value * 0.5f);
+				flag_inutil = false;
 			}
 		}
 
