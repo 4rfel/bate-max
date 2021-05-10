@@ -139,9 +139,11 @@ public class PlayerMovement : NetworkBehaviour {
 
 				rb.MoveRotation(rb.rotation * rot);
 
+				rb.velocity = Vector3.ClampMagnitude(rb.velocity, max_foward);
+
 				if (current_acc > 0f) {
 					if (rb.velocity.magnitude > max_foward) {
-						current_acc = 0f;
+						current_acc = 1f;
 					}
 				} else if (current_acc < 0f) {
 					if (rb.velocity.magnitude > max_backward) {
