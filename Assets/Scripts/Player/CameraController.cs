@@ -11,8 +11,6 @@ public class CameraController : NetworkBehaviour {
 	[SerializeField] GameObject aa;
 	[SerializeField] Slider sensy;
 
-
-
 	bool isFirstPerson = true;
 
 	InputMaster controls;
@@ -56,25 +54,28 @@ public class CameraController : NetworkBehaviour {
 		if (IsLocalPlayer) {
 			if (isFirstPerson)
 				MoveCameraFP();
-			//else
-			//	MoveCameraTP();
+			else
+				MoveCameraTP();
 		}
 	}
 
 	void MoveCameraTP() {
 
 		Vector2 mp = Mouse.current.position.ReadValue();
-		float cameraRotationX = mp.x * sensy.value;
-
-		aa.transform.rotation = Quaternion.Euler(0f, cameraRotationX, 0f);
-		Debug.Log(cameraRotationX);
+		float cameraRotationX = map(mp.x, 0 + sensy.value, 1070 - sensy.value, 0, 360);
+		cameraRotationX += 180;
+		aa.transform.rotation = transform.rotation * Quaternion.Euler(0f, cameraRotationX, 0f);
 
 	}
 
 	void MoveCameraFP() {
 		Vector2 mp = Mouse.current.position.ReadValue();
-		float cameraRotationX = mp.x * sensy.value;
-		cameraRotationX = Mathf.Clamp(cameraRotationX, -90, 90);
-		cam.transform.rotation = Quaternion.Euler(0f, cameraRotationX, 0f) * transform.rotation;
+		float cameraRotationX = Mathf.Clamp(mp.x, sensy.value, 1070 - sensy.value);
+		cameraRotationX = map(cameraRotationX, 0 + sensy.value, 1070 - sensy.value, -90, 90);
+		cam.transform.rotation = transform.rotation * Quaternion.Euler(0f, cameraRotationX, 0f);
+	}
+
+	float map(float s, float a1, float a2, float b1, float b2) {
+		return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
 	}
 }

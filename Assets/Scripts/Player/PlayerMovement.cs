@@ -1,6 +1,7 @@
 using UnityEngine;
 using MLAPI;
 using MilkShake;
+using MLAPI.NetworkVariable;
 
 
 public class PlayerMovement : NetworkBehaviour {
@@ -11,6 +12,8 @@ public class PlayerMovement : NetworkBehaviour {
 	[SerializeField] GameObject nitroObj;
 	[SerializeField] Material nitroMaterial;
 	[SerializeField] GameObject cart;
+
+	NetworkVariableColor color;
 
 
 	float max_foward = 10f;
@@ -60,14 +63,13 @@ public class PlayerMovement : NetworkBehaviour {
 			nitroObj.SetActive(true);
 			rb = GetComponent<Rigidbody>();
 			pausePlayer = GetComponent<PausePlayer>();
-			Color color = new Color(Random.Range(0.2f, 0.9f), Random.Range(0.2f, 0.9f), Random.Range(0.2f, 0.9f));
-
-			Material cartMaterial = cart.GetComponent<Renderer>().material;
-
-			cartMaterial.SetColor("_Color", color);
-			cartMaterial.SetColor("_AmbientLight", color * 0.5f);
-
+			Color c = new Color(Random.Range(0.2f, 0.9f), Random.Range(0.2f, 0.9f), Random.Range(0.2f, 0.9f));
+			color.Value = c;
 		}
+		Material cartMaterial = cart.GetComponent<Renderer>().material;
+
+		cartMaterial.SetColor("_Color", color.Value);
+		cartMaterial.SetColor("_AmbientLight", color.Value * 0.5f);
 	}
 
 	private void OnEnable() {
@@ -127,10 +129,17 @@ public class PlayerMovement : NetworkBehaviour {
 				nitroMaterial.SetFloat("_Hp", (nitroCD - nitroCurrentCD) / nitroCD);
 			}
 
-			if(transform.position.y < -20f) {
+			if (transform.position.y < -20f) {
 				transform.position = Vector3.zero;
 				rb.velocity = Vector3.zero;
 				transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+			}
+		} else {
+			if (color.Value == Color.black) {
+				Material cartMaterial = cart.GetComponent<Renderer>().material;
+
+				cartMaterial.SetColor("_Color", color.Value);
+				cartMaterial.SetColor("_AmbientLight", color.Value * 0.5f);
 			}
 		}
 

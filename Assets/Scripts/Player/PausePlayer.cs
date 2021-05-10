@@ -19,6 +19,7 @@ public class PausePlayer : NetworkBehaviour {
 	private void Start() {
 		if (IsLocalPlayer) {
 			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Confined;
 		}
 	}
 
@@ -68,10 +69,13 @@ public class PausePlayer : NetworkBehaviour {
 
 
 	private void Update() {
-		if (paused)
+		if (paused) {
 			Cursor.visible = true;
-		else
+			Cursor.lockState = CursorLockMode.None;
+		} else {
 			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Confined;
+		}
 
 	}
 }
