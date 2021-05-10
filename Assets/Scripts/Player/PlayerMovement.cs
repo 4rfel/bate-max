@@ -10,7 +10,7 @@ public class PlayerMovement : NetworkBehaviour {
 	[SerializeField] LayerMask Ground;
 	[SerializeField] GameObject nitroObj;
 	[SerializeField] Material nitroMaterial;
-	[SerializeField] Material cartMaterial;
+	[SerializeField] GameObject cart;
 
 
 	float max_foward = 10f;
@@ -61,6 +61,8 @@ public class PlayerMovement : NetworkBehaviour {
 			rb = GetComponent<Rigidbody>();
 			pausePlayer = GetComponent<PausePlayer>();
 			Color color = new Color(Random.Range(0.2f, 0.9f), Random.Range(0.2f, 0.9f), Random.Range(0.2f, 0.9f));
+
+			Material cartMaterial = cart.GetComponent<Renderer>().material;
 
 			cartMaterial.SetColor("_Color", color);
 			cartMaterial.SetColor("_AmbientLight", color * 0.5f);

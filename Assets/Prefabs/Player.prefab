@@ -824,7 +824,7 @@ MonoBehaviour:
     m_Bits: 64
   nitroObj: {fileID: 1233366389615215533}
   nitroMaterial: {fileID: 2100000, guid: a934a0f5784be2a43864281cca09c21c, type: 2}
-  cartMaterial: {fileID: 2100000, guid: 07a25f0d1423f8e4cb69c1872ec3bea7, type: 2}
+  cart: {fileID: 8597686864273803115}
   shaker: {fileID: 2299692584994871316}
   shake_preset: {fileID: 11400000, guid: 2685331e62bca1f43b56f4f5f7b275bf, type: 2}
 --- !u!64 &1283680035274430634
@@ -2566,6 +2566,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd2205d62bb53ae4da7877933aaf2930, type: 3}
+--- !u!1 &8597686864273803115 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: fd2205d62bb53ae4da7877933aaf2930,
+    type: 3}
+  m_PrefabInstance: {fileID: 440715695932261091}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &114566819582715144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fd2205d62bb53ae4da7877933aaf2930,
