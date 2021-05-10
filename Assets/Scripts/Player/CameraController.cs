@@ -56,8 +56,8 @@ public class CameraController : NetworkBehaviour {
 		if (IsLocalPlayer) {
 			if (isFirstPerson)
 				MoveCameraFP();
-			else
-				MoveCameraTP();
+			//else
+			//	MoveCameraTP();
 		}
 	}
 
