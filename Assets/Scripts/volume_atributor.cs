@@ -9,5 +9,6 @@ public class volume_atributor : MonoBehaviour
     void Start()
     {
         GameObject.FindGameObjectWithTag("bg").GetComponent<bg_music>().audio_value = GetComponent<Slider>();
+        GameObject.FindGameObjectWithTag("sfx").GetComponent<Sound>().audio_value = GetComponent<Slider>();
     }
 }

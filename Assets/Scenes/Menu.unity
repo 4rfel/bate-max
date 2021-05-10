@@ -1452,7 +1452,7 @@ GameObject:
   - component: {fileID: 1758403473}
   m_Layer: 0
   m_Name: SoundManager
-  m_TagString: Untagged
+  m_TagString: sfx
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1565,6 +1565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281106db3dff8544697488c2c2695d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio_value: {fileID: 0}
 --- !u!4 &1758403475
 Transform:
   m_ObjectHideFlags: 0
