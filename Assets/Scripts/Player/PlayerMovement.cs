@@ -126,6 +126,12 @@ public class PlayerMovement : NetworkBehaviour {
 				}
 				nitroMaterial.SetFloat("_Hp", (nitroCD - nitroCurrentCD) / nitroCD);
 			}
+
+			if(transform.position.y < -20f) {
+				transform.position = Vector3.zero;
+				rb.velocity = Vector3.zero;
+				transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+			}
 		}
 
 	}
